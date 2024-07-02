@@ -278,8 +278,11 @@ class _ToDoAppState extends State<ToDoApp> {
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
-                            child: Image.network(
-                                "https://cdn.icon-icons.com/icons2/1859/PNG/512/checklist_117966.png"),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(25),
+                              child: Image.network(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaV-HU-f7xVUyjVauTQdr6u981N-_exSjIOQ&s"),
+                            ),
                           ),
                           const SizedBox(
                             width: 10,
