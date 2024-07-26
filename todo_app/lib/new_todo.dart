@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/todo_model_class.dart';
-import 'package:intl/intl_browser.dart';
+
 
 class ToDoApp extends StatefulWidget {
   const ToDoApp({super.key});
@@ -19,7 +19,7 @@ class _ToDoAppState extends State<ToDoApp> {
   void showBottomSheet(bool doedit, [ToDoModelClass? toDoModelObj]) {
     showModalBottomSheet(
         isScrollControlled: true,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),
@@ -34,137 +34,140 @@ class _ToDoAppState extends State<ToDoApp> {
               right: 20,
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Create Task",
-                  //style: ,
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Title",
-                      //style: ,
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    TextField(
-                      controller: titleController,
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    "Create Task",
+                    //style: ,
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Title",
+                        //style: ,
+                      ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      TextField(
+                        controller: titleController,
+                        decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: const BorderSide(
+                                    color: Color.fromRGBO(0, 139, 148, 1))),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Colors.purpleAccent),
+                                borderRadius: BorderRadius.circular(12))),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Text(
+                        "Description",
+                        //style:
+                      ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      TextField(
+                        controller: descriptionController,
+                        maxLines: 4,
+                        decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: const BorderSide(
-                                  color: Color.fromRGBO(0, 139, 148, 1))),
-                          border: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Colors.purpleAccent),
-                              borderRadius: BorderRadius.circular(12))),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Text(
-                      "Description",
-                      //style:
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    TextField(
-                      controller: descriptionController,
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                                color: Color.fromRGBO(0, 139, 148, 1)),
-                          ),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(0, 139, 148, 1)),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.purpleAccent,
+                                ),
+                                borderRadius: BorderRadius.circular(12))),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Text(
+                        "Date",
+                        //style:
+                      ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      TextField(
+                        controller: dateController,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                            suffixIcon: const Icon(Icons.date_range_rounded),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: const BorderSide(
+                                    color: Color.fromRGBO(0, 139, 148, 1))),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(
                                 color: Colors.purpleAccent,
                               ),
-                              borderRadius: BorderRadius.circular(12))),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Text(
-                      "Date",
-                      //style:
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    TextField(
-                      controller: dateController,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                          suffixIcon: const Icon(Icons.date_range_rounded),
-                          focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                  color: Color.fromRGBO(0, 139, 148, 1))),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.purpleAccent,
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          )),
-                      onTap: () async {
-                        DateTime? pickeddate = await showDatePicker(
-                          context: context,
-                          firstDate: DateTime(2024),
-                          lastDate: DateTime(2025),
-                          initialDate: DateTime.now(),
-                        );
-                        String formatDate =
-                            DateFormat.yMMMd().format(pickeddate!);
-                        setState(() {
-                          dateController.text = formatDate;
-                        });
-                      },
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 50,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                            )),
+                        onTap: () async {
+                          DateTime? pickeddate = await showDatePicker(
+                            context: context,
+                            firstDate: DateTime(2024),
+                            lastDate: DateTime(2025),
+                            initialDate: DateTime.now(),
+                          );
+                          String formatDate =
+                              DateFormat.yMMMd().format(pickeddate!);
+                          setState(() {
+                            dateController.text = formatDate;
+                          });
+                        },
+                      )
+                    ],
                   ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        backgroundColor: const Color.fromRGBO(0, 139, 148, 1),
                       ),
-                      backgroundColor: Color.fromRGBO(0, 139, 148, 1),
-                    ),
-                    onPressed: () {
-                      doedit ? submit(doedit, toDoModelObj) : submit(doedit);
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      "Submit",
-                      //style: ,
+                      onPressed: () {
+                        doedit ? submit(doedit, toDoModelObj) : submit(doedit);
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        "Submit",
+                        //style: ,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                )
-              ],
+                  const SizedBox(
+                    height: 30,
+                  )
+                ],
+              ),
             ),
           );
         });
@@ -237,9 +240,10 @@ class _ToDoAppState extends State<ToDoApp> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(2, 167, 177, 1),
+        backgroundColor: const Color.fromRGBO(2, 167, 177, 1),
+        foregroundColor: Colors.white,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "TO-DO APP",
           //style: ,
         ),
@@ -248,7 +252,7 @@ class _ToDoAppState extends State<ToDoApp> {
           itemCount: todoList.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 15,
                 vertical: 16,
               ),
@@ -274,7 +278,7 @@ class _ToDoAppState extends State<ToDoApp> {
                           Container(
                             height: 70,
                             width: 70,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
@@ -311,7 +315,7 @@ class _ToDoAppState extends State<ToDoApp> {
                         height: 14.0,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 10.0),
+                        padding: const EdgeInsets.only(left: 10.0),
                         child: Row(
                           children: [
                             Text(
@@ -326,7 +330,7 @@ class _ToDoAppState extends State<ToDoApp> {
                                   onTap: () {
                                     editTask(todoList[index]);
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.edit_outlined,
                                     color: Color.fromRGBO(0, 139, 148, 1),
                                   ),
@@ -338,7 +342,7 @@ class _ToDoAppState extends State<ToDoApp> {
                                   onTap: () {
                                     removeTasks(todoList[index]);
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.delete_outline,
                                     color: Color.fromRGBO(0, 139, 148, 1),
                                   ),
@@ -360,6 +364,7 @@ class _ToDoAppState extends State<ToDoApp> {
           clearController();
           showBottomSheet(false);
         },
+        child: const Icon(Icons.add,color: Colors.white,size: 35,),
       ),
     );
   }

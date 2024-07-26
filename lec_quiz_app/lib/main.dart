@@ -282,23 +282,19 @@ class _QuizAppState extends State {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 30,
-              ),
+              
               Image.network(
                 "https://img.freepik.com/premium-vector/winner-trophy-cup-with-ribbon-confetti_51486-122.jpg",
                 height: 380,
                 width: 380,
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              
               const Text(
                 "Congratulations!!!",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               const Text(
                 "You have complited the Quiz",
@@ -310,10 +306,10 @@ class _QuizAppState extends State {
               Text(
                 "$noOfCorrectAns/${allQueation.length}",
                 style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               ),
               const SizedBox(
-                height: 35,
+                height: 20,
               ),
               ElevatedButton(
                 onPressed: () {
@@ -325,7 +321,7 @@ class _QuizAppState extends State {
                 },
                 child: const Text(
                   "Reset",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500,
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500,
                   color: Colors.black,
                   ),
                 ),
