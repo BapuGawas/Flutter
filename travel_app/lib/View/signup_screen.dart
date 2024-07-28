@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/View/home_screen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -170,11 +171,11 @@ class _SignUpState extends State<SignUp> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    /*Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) {
-                        return 
+                        return const Home();
                       },
-                    ));*/
+                    ));
                   },
                   child: Container(
                       width: double.infinity,

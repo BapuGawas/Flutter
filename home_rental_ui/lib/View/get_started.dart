@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:home_rental_ui/View/home_screen.dart';
 
 class GetStarted extends StatefulWidget {
   const GetStarted({super.key});
@@ -46,7 +47,13 @@ class _GetStartedState extends State<GetStarted> {
           const SizedBox(height: 25,),
           GestureDetector(
             onTap: () {
-              
+              Navigator.push(context, 
+                MaterialPageRoute(
+                  builder: (context) {
+                    return HomeScreen();
+                  }, 
+                )
+              );
               
             },
             child: Container(
